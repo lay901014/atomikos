@@ -1,9 +1,5 @@
 package com.zzmx.springboot.atomikos.config;
 
-import java.util.Properties;
-
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.jta.atomikos.AtomikosDataSourceBean;
@@ -12,6 +8,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 public class DataSourceConfig {
@@ -44,6 +43,11 @@ public class DataSourceConfig {
 		return ds;
 	}
 
+	/**
+	 *
+	 * @param ds
+	 * @return
+	 */
 	@Bean("sysJdbcTemplate")
 	public JdbcTemplate sysJdbcTemplate(@Qualifier("systemDataSource") DataSource ds) {
 		return new JdbcTemplate(ds);
